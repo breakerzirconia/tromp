@@ -1,0 +1,4 @@
+(executable
+ (public_name tromp)
+ (name main)
+ (libraries cmdliner core tromp))

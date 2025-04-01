@@ -1,0 +1,5 @@
+version = 0.27.0
+profile = default
+margin = 120
+if-then-else = vertical
+# break-separators = before
