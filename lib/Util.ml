@@ -15,3 +15,6 @@ let rec church_r n f x =
 (** Splits [l] in two, where the first list is the greatest prefix of [l] with all elements satisfying the predicate
     [f]. *)
 let span l ~f = (Core.List.take_while l ~f, Core.List.drop_while l ~f)
+
+(** Returns [l] without its last element. Fails if [l] is empty. *)
+let rec ini = function [] -> failwith "ini" | [ _ ] -> [] | x :: xs -> x :: ini xs

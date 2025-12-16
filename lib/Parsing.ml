@@ -2,6 +2,8 @@
 (* Lexing *)
 (**********)
 
+
+(** The type of tokens in the lambda expression. HALT represents any unexpected characters during tokenization. *)
 type token = Backslash | Str of string | Dot | LPar | RPar | HALT
 
 let token_to_string = function
@@ -19,6 +21,7 @@ let recognize_symbol = function
   | ')' -> Some RPar
   | _ -> None
 
+(** Checks if a character can be a valid part of an identifier. *)
 let valid_iden_part c = Core.Char.is_alphanum c || c = '_' || c = '-' || c = '\''
 
 let rec tokenize = function
@@ -41,13 +44,14 @@ let rec tokenize = function
 
 type 'elem parsing_error = NotEOF | UnexpectedEOF | UnexpectedElement of { got : 'elem; expected : 'elem option }
 
+(** Translates a [parsing_error] to a [string]. 'elem is specialized to [token]. *)
 let parsing_error_to_string = function
   | NotEOF -> "Input has not been fully consumed"
   | UnexpectedEOF -> "Expected more input, but it has been fully consumed"
   | UnexpectedElement e -> (
       match e.expected with
       | None -> "Unexpected token: " ^ token_to_string e.got
-      | Some expected -> "Unexpected token: got " ^ token_to_string e.got ^ ", but expected " ^ token_to_string expected
+      | Some expected -> "Unexpected token: got " ^ token_to_string e.got ^ " but expected " ^ token_to_string expected
       )
 
 type ('a, 'elem) parser = Parser of ('elem list -> ('a * 'elem list, 'elem parsing_error) result)

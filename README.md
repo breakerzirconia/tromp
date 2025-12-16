@@ -7,7 +7,7 @@
 1. Run `opam exec -- dune build` (this requires you to have both `opam` and `dune` installed; the latter can be installed using the former).
 2. Locate the executable: `_build/install/default/bin/tromp`.
 
-Run `tromp --help` for an overview of the tool's usage. Right now, the only supported rendering mode is `text`.
+Run `tromp --help` for an overview of the tool's usage.
 
 ## Formal grammar of $\lambda$-expressions
 
@@ -19,18 +19,20 @@ Run `tromp --help` for an overview of the tool's usage. Right now, the only supp
   * Whitespaces separating `lhs` and `rhs` are *mandatory*.
 * **Abstraction**. If `x` is a variable and `e` is a well-formed $\lambda$-expression, so is `(\ x . e)`.
   * Abstraction is *right-associative*. Parentheses can be omitted if the lambda intends to consume everything to its right.
-  * Back-to-back binders can be stacked: `\ x . \ y . \ z . E` can be rewritten compactly as `\ x y z . E`.
+  * Back-to-back binders can be stacked: `\ x . \ y . \ z . e` can be rewritten compactly as `\ x y z . e`.
   * Whitespaces separating `x`, `e`, and the other syntactical elements, are *optional*.
 
 ## A note on free variables
 
-This tool *permits* free variables in your $\lambda$-terms, so they need not be combinators! In the diagrams they are repressented by spikes that shoot up. One can imagine them connecting to some binder outside of the given $\lambda$-term.
+This tool *permits* free variables in your $\lambda$-terms, so they need not be combinators! In the diagrams they are represented by spikes that shoot upward. One can imagine them connecting to some binder outside of the given $\lambda$-term.
 
 ## Roadmap (WIP)
 
-- [x] Construct a text-rendering algorithm w/ Unicode code points.
-- [ ] Construct an image-rendering algorithm.
-- [ ] Add 'λ', 'fu?n', and '->' to the CFG of $\lambda$-expressions.
+- [x] Construct a text-rendering algorithm w/ box drawing characters.
+- [x] Construct a hybrid rendering algorithm that constructs the diagram with block elements.
+- [ ] Construct an image-rendering algorithm that uses structures from the hybrid rendering algorithm.
+- [ ] Add 'λ', 'fun', 'fn', and '->' to the CFG of $\lambda$-expressions.
+- [ ] Add the ability to launch an interactive session with predefined and custom user-defined $\lambda$-expressions.
 - [ ] Generate a series of images, where each next image is the current image β-reduced once, with the option to specify the number of images.
 - [ ] Generate a GIF, animating β-reduction of a $\lambda$-expression, with the option to specify the delay and the number of frames.
 
@@ -42,6 +44,6 @@ This tool *permits* free variables in your $\lambda$-terms, so they need not be 
 
 ### Tool naming
 
-The name of this tool is subject to change. Even though `tromp` is concise and easy to type, associating the diagram generation purely with John Tromp's last name shadows his substantial work in other areas.
+The name of this tool is subject to change. Even though `tromp` is concise and easy to type, associating the diagram generation purely with John Tromp's last name may shadow his substantial work in other areas.
 
 If you have any suggestions, feel free to create a ticket and discuss with me the tool's naming there!

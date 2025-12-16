@@ -2,16 +2,16 @@
 
 (name tromp)
 
-(version 0.1.0)
+(version 0.1.1)
 
 (generate_opam_files true)
 
 (source
  (github breakerzirconia/tromp))
 
-(authors "Constantine Ter-Matevosian <terkot1010@gmail.com>")
+(authors "Constantine Ter-Matevosian <breakerzirconia@gmail.com>")
 
-(maintainers "Constantine Ter-Matevosian <terkot1010@gmail.com>")
+(maintainers "Constantine Ter-Matevosian <breakerzirconia@gmail.com>")
 
 (license MIT)
 
